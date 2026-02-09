@@ -1,0 +1,25 @@
+{
+  "nombreApp": "Cuentas Club Gimnasia Rítmica",
+  "saldoInicial": 0.0,
+  "movimientos": [],
+  "listas": {
+    "ingreso": [
+      "Escuelita",
+      "Punteras",
+      "Ropa",
+      "Otras entradas"
+    ],
+    "gasto": [
+      "Sueldos",
+      "Competiciones",
+      "Otras salidas"
+    ],
+    "metodos": [
+      "Efectivo",
+      "Tarjeta",
+      "Transferencia",
+      "Bizum",
+      "Cheque"
+    ]
+  }
+}

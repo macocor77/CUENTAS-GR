@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cuentas Club Gimnasia Rítmica</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#ff2da1" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="app-header">
+    <h1>🏅 Cuentas Club Gimnasia Rítmica</h1>
+    <nav class="tabs">
+      <button data-tab="resumen" class="active">Resumen</button>
+      <button data-tab="movimientos">Movimientos</button>
+      <button data-tab="nuevo">Nuevo</button>
+      <button data-tab="listas">Listas/Config</button>
+      <button data-tab="import">Importar/Exportar</button>
+    </nav>
+  </header>
+  <main>
+    <section id="tab-resumen" class="tab active">
+      <div class="cards">
+        <div class="card"><div class="card-title">Saldo inicial</div><div class="card-value" id="saldo-inicial">0,00 €</div></div>
+        <div class="card"><div class="card-title">Total entradas</div><div class="card-value green" id="total-entradas">0,00 €</div></div>
+        <div class="card"><div class="card-title">Total salidas</div><div class="card-value red" id="total-salidas">0,00 €</div></div>
+        <div class="card"><div class="card-title">Saldo actual</div><div class="card-value" id="saldo-actual">0,00 €</div></div>
+      </div>
+      <div class="filters">
+        <label>Desde: <input type="date" id="f-desde"></label>
+        <label>Hasta: <input type="date" id="f-hasta"></label>
+        <label>Tipo: <select id="f-tipo"><option value="">Todos</option><option>Entrada</option><option>Salida</option></select></label>
+        <label>Categoría: <select id="f-categoria"><option value="">Todas</option></select></label>
+        <button id="btn-aplicar-filtros">Aplicar</button>
+        <button id="btn-limpiar-filtros">Limpiar</button>
+      </div>
+      <table class="tabla" id="tabla-resumen"><thead><tr><th>Fecha</th><th>Tipo</th><th>Categoría</th><th>Descripción</th><th>Método</th><th class="num">Entrada</th><th class="num">Salida</th><th class="num">Saldo</th><th></th></tr></thead><tbody></tbody></table>
+    </section>
+    <section id="tab-movimientos" class="tab">
+      <h2>Movimientos</h2>
+      <div id="estadisticas"></div>
+      <table class="tabla" id="tabla-mov"><thead><tr><th>Fecha</th><th>Tipo</th><th>Categoría</th><th>Descripción</th><th>Método</th><th class="num">Cantidad</th><th></th></tr></thead><tbody></tbody></table>
+    </section>
+    <section id="tab-nuevo" class="tab">
+      <h2>Nuevo movimiento</h2>
+      <form id="form-nuevo">
+        <label>Fecha<input type="date" name="fecha" required></label>
+        <label>Tipo<select name="tipo" required><option value="Entrada">Entrada</option><option value="Salida">Salida</option></select></label>
+        <label>Categoría<select name="categoria" id="sel-categoria" required></select></label>
+        <label>Descripción<input type="text" name="descripcion" placeholder="Ej: cuota, compra punteras..."></label>
+        <label>Cantidad (€)<input type="number" step="0.01" min="0" name="cantidad" required></label>
+        <label>Método de pago<select name="metodo" id="sel-metodo"></select></label>
+        <label>Nota<input type="text" name="nota"></label>
+        <button type="submit" class="btn-primary">Guardar</button>
+        <button type="reset" class="secondary">Limpiar</button>
+      </form>
+    </section>
+    <section id="tab-listas" class="tab">
+      <h2>Listas y configuración</h2>
+      <div class="grid-2">
+        <div><h3>Categorías de ENTRADA</h3><ul id="ul-cat-ingreso" class="chips"></ul><div class="addline"><input id="new-cat-ing" placeholder="Nueva categoría"><button id="btn-add-cat-ing" class="btn-primary">Añadir</button></div></div>
+        <div><h3>Categorías de SALIDA</h3><ul id="ul-cat-gasto" class="chips"></ul><div class="addline"><input id="new-cat-gas" placeholder="Nueva categoría"><button id="btn-add-cat-gas" class="btn-primary">Añadir</button></div></div>
+      </div>
+      <div class="grid-2">
+        <div><h3>Métodos de pago</h3><ul id="ul-metodos" class="chips"></ul><div class="addline"><input id="new-metodo" placeholder="Nuevo método"><button id="btn-add-metodo" class="btn-primary">Añadir</button></div></div>
+        <div><h3>Saldo inicial</h3><div class="addline"><input id="inp-saldo-inicial" type="number" step="0.01"><button id="btn-guardar-saldo" class="btn-primary">Guardar</button></div><small>Se aplica al recálculo del saldo acumulado.</small></div>
+      </div>
+    </section>
+    <section id="tab-import" class="tab">
+      <h2>Importar / Exportar</h2>
+      <div class="panel"><h3>Exportar</h3><button id="btn-export-json" class="btn-primary">Exportar JSON</button><button id="btn-export-csv" class="btn-secondary">Exportar CSV</button></div>
+      <div class="panel"><h3>Importar JSON</h3><input type="file" id="file-import" accept="application/json"><button id="btn-importar" class="btn-primary">Importar</button><small>Consejo: exporta primero una copia de seguridad.</small></div>
+      <div class="panel"><h3>Datos iniciales</h3><button id="btn-restaurar" class="btn-secondary">Restaurar datos iniciales</button></div>
+    </section>
+  </main>
+  <footer><small>Funciona sin conexión. Para instalar como app: abre en Chrome y “Añadir a pantalla de inicio”.</small></footer>
+  <script src="app.js"></script>
+</body>
+</html>
